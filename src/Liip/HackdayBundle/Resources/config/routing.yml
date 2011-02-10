@@ -2,6 +2,10 @@ admin:
     pattern: /admin/
     defaults: { _controller: liip_hackday.admin:indexAction }
 
+admin_no_slash:
+    pattern: /admin
+    defaults: { _controller: liip_hackday.admin:indexAction }
+
 admin_create:
     pattern: /admin/create
     defaults: { _controller: liip_hackday.admin:createAction }
