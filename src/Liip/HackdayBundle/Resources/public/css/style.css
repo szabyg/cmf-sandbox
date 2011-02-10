@@ -1,0 +1,36 @@
+html {
+    text-align: center;
+    font: .825em/1.5 Arial, Helvetica, sans-serif;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-top: 15px solid #8b2626;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    border-top: 3px solid #652020;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+p {
+    max-width: 33em;
+}
+
+a {
+    color: #214881;
+}
+
+hr {
+    border: 0;
+    width: 100%;
+    border-bottom: 1px solid #aaa;
+}
+
+.container {
+    padding: 2em 3em;
+}
