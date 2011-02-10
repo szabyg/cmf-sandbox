@@ -36,7 +36,6 @@ class DefaultController extends Controller
         $data = array(
             'path' => $path,
             'doctrine_node' => $page,
-            'jackalope_node' => $node,
         );
 
         return $this->render('HackdayBundle:Default:index.html.twig', array('data'=>$data));
@@ -55,11 +54,7 @@ class DefaultController extends Controller
      */
     public function childlistAction($data)
     {
-        //$article = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
-        $children = array();
-        foreach($data['jackalope_node'] as $child) {
-            $children[] = $child->getName();
-        }
-        return $this->render('HackdayBundle:Default:childlist.html.twig', array('children'=>$children));
+        $children = \Liip\HackdayBundle\Helper\PhpcrWalker::getChildList($this->dm, $this->jackalope->getSession(), $data['path']);
+        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$path, 'children'=>$children));
     }
 }
