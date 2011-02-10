@@ -2,7 +2,7 @@
 namespace Liip\HackdayBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HelloControllerTest extends WebTestCase
+class IndexControllerTest extends WebTestCase
 {
     public function testIndex()
     {
