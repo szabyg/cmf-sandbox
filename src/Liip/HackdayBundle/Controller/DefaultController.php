@@ -47,12 +47,7 @@ class DefaultController extends Controller
      */
     public function contentAction($data)
     {
-        $props = $data['jackalope_node']->getPropertiesValues();
-        $props_for_twig = array(
-            'primaryType' => $props['jcr:primaryType'],
-            '_doctrine_alias' => $props['_doctrine_alias'],
-        );
-        return $this->render('HackdayBundle:Default:document.html.twig', array('data'=>$data, 'props' => $props_for_twig));
+        return $this->render('HackdayBundle:Default:document.html.twig', array('data'=>$data));
     }
 
     /**
