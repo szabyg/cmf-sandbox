@@ -24,3 +24,5 @@ phpcr.config:
         user:
         pass:
         transport:
+
+liip_hackday.config: ~
