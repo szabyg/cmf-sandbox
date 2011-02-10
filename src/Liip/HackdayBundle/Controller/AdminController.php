@@ -2,6 +2,9 @@
 
 namespace Liip\HackdayBundle\Controller;
 
+use Liip\HackdayBundle\Document\Page;
+use Liip\HackdayBundle\Admin\PageForm;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AdminController extends Controller
@@ -31,5 +34,26 @@ class AdminController extends Controller
     public function indexAction()
     {
         return $this->render('HackdayBundle:Admin:index.html.twig');
+    }
+
+    public function createAction()
+    {
+        $page = new Page();
+        $form = PageForm::create($this->get('form.context'), 'page');
+
+        // If a POST request, write submitted data into $page
+        // and validate it
+        $form->bind($this->get('request'), $page);
+
+        // If the form has been submitted and validates...
+        if ($form->isValid()) {
+            
+            var_dump($page);
+            // TODO save $page to Jackrabbit
+            
+        }
+
+        // Display the form
+        return $this->render('HackdayBundle:Admin:create.html.twig', array('form' => $form));
     }
 }

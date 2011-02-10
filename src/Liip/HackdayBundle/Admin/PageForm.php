@@ -2,13 +2,13 @@
 
 namespace Liip\HackdayBundle\Admin;
 
-use Symfony\Component\Form;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\TextField;
 use Symfony\Component\Form\TextareaField;
 use Symfony\Component\Form\EmailField;
 use Symfony\Component\Form\CheckboxField;
 
-class ContactForm extends Form
+class PageForm extends Form
 {
     protected function configure()
     {
