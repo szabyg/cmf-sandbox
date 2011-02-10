@@ -1,12 +1,12 @@
 admin:
     pattern: /admin/
-    defaults: { _controller: liip_hackday.controller:indexAction }
+    defaults: { _controller: liip_hackday.admin:indexAction }
 
 admin_create:
     pattern: /admin/create
-    defaults: { _controller: liip_hackday.controller:createAction }
+    defaults: { _controller: liip_hackday.admin:createAction }
 
 cms:
     pattern: /cms/{path}
-    defaults: { _controller: default.controller:indexAction }
+    defaults: { _controller: liip_hackday.default:indexAction }
     requirements: { path: .* }

@@ -1,6 +1,13 @@
 services:
-    liip_hackday.controller:
+    liip_hackday.admin:
         class: Liip\HackdayBundle\Controller\AdminController
+        arguments:
+            - @service_container
+            - @jackalope.loader
+            - @doctrine.phpcr_odm.document_manager
+
+    liip_hackday.default:
+        class: Liip\HackdayBundle\Controller\DefaultController
         arguments:
             - @service_container
             - @jackalope.loader
