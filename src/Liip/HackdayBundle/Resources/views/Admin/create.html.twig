@@ -1,15 +1,16 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Create a new page</title>
-    </head>
-    <body>
-        <p>{{ app.session.flash('notice') }}</p>
-        <form action="#" method="post">
-            {{ form_field(form) }}
-        
-            <input type="submit" value="Create page" />
-        </form>
-    </body>
-</html>
+{% extends "HackdayBundle:Admin:layout.html.twig" %}
+
+{% block title %}Create a new page{% endblock %}
+
+{% block content %}
+<h2>Create a new page!</h2>
+
+<form action="#" method="post">
+    {{ form_field(form) }}
+
+    <p>
+        <input type="submit" value="Create page" />
+        <a href="{{ path('admin') }}">Cancel</a>
+    </p>
+</form>
+{% endblock %}
