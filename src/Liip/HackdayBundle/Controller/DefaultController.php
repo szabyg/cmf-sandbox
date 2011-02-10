@@ -2,6 +2,8 @@
 
 namespace Liip\HackdayBundle\Controller;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -28,8 +30,7 @@ class DefaultController extends Controller
         $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
 
         if ($page === null) {
-            // TODO: this is not a nice way to display errors...
-            return new \Symfony\Component\HttpFoundation\Response("Page not found '/$path'");
+            throw new NotFoundHttpException("Page not found '/$path'");
         }
 
         return $this->render('HackdayBundle:Default:index.html.twig', array('path'=>$path));
