@@ -1,10 +1,15 @@
+parameters:
+    liip_hackday.form.page.class: Liip\HackdayBundle\Admin\PageForm
+
 services:
     liip_hackday.admin:
         class: Liip\HackdayBundle\Controller\AdminController
+        scope: request
         arguments:
             - @service_container
-            - @jackalope.loader
             - @doctrine.phpcr_odm.document_manager
+            - @liip_hackday.form
+            - @request
 
     liip_hackday.default:
         class: Liip\HackdayBundle\Controller\DefaultController
@@ -12,3 +17,11 @@ services:
             - @service_container
             - @jackalope.loader
             - @doctrine.phpcr_odm.document_manager
+    
+    liip_hackday.form:
+        factory_method: create
+        class: %liip_hackday.form.page.class%
+        arguments:
+            - @form.context
+            - liip_hackday_admin_page_form
+            - { dm: @doctrine.phpcr_odm.document_manager }

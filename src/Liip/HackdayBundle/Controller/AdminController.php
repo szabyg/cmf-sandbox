@@ -14,25 +14,20 @@ use Jackalope\Transport\Davex\HTTPErrorException;
 class AdminController extends Controller
 {
     /**
-     * @var \Bundle\DoctrinePHPCRBundle\JackalopeLoader
-     */
-    protected $jackalope = null;
-
-    /**
-     * @var \Jackalope\Session
-     */
-    protected $jackalopeSession = null;
-
-    /**
      * @var \Doctrine\ODM\PHPCR\DocumentManager
      */
     protected $dm = null;
 
-    public function __construct($container, $jackalope, $dm)
+    protected $form;
+
+    protected $request;
+
+    public function __construct($container, $dm, $form, $request)
     {
         $this->setContainer($container);
-        $this->jackalope = $jackalope;
         $this->dm = $dm;
+        $this->form = $form;
+        $this->request = $request;
     }
 
     public function indexAction()
@@ -42,34 +37,34 @@ class AdminController extends Controller
 
     public function createAction()
     {
+        // bind form to page model
         $page = new Page();
-        $form = PageForm::create($this->get('form.context'), 'page');
+        $this->form->bind($this->request, $page);
 
-        // If a POST request, write submitted data into $page
-        // and validate it
-        $form->bind($this->get('request'), $page);
-
-        // If the form has been submitted and validates...
-        if ($form->isValid()) {
+        if ($this->form->isValid()) {
 
             try {
-                $this->dm->persist($page, $page->name);
+
+                // path for page
+                $parent = $this->form->get('parent')->getData();
+                $path = $parent . '/' . $page->name;
+
+                // save page
+                $this->dm->persist($page, $path);
                 $this->dm->flush();
 
-                $session = $this->get('request')->getSession();
-                $session->setFlash('notice', 'Page created!');
-
+                // redirect with message
+                $this->request->getSession()->setFlash('notice', 'Page created!');
                 return $this->redirect($this->generateUrl('admin'));
 
             } catch (HTTPErrorException $e) {
-                
+
                 $path = new PropertyPath('name');
-                $form->addError(new DataError('Name already in use.'), $path->getIterator());
+                $this->form->addError(new DataError('Name already in use.'), $path->getIterator());
 
             }
         }
 
-        // Display the form
-        return $this->render('HackdayBundle:Admin:create.html.twig', array('form' => $form));
+        return $this->render('HackdayBundle:Admin:create.html.twig', array('form' => $this->form));
     }
 }
