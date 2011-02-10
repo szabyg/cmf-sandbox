@@ -33,7 +33,9 @@ class DefaultController extends Controller
      */
     public function contentAction($path)
     {
-        return $this->render('HackdayBundle:Default:document.html.twig', array('path'=>$path));
+        $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
+
+        return $this->render('HackdayBundle:Default:document.html.twig', array('path'=>$path, 'page' => $page));
     }
 
     /**
