@@ -3,14 +3,14 @@ html {
     font: .825em/1.5 Arial, Helvetica, sans-serif;
     background-color: #FFFFFF;
     color: #000000;
-    border-top: 15px solid #8b2626;
+    border-top: 15px solid #DAF22F;
 }
 
 body {
     padding: 0;
     margin: 0;
     text-align: left;
-    border-top: 3px solid #652020;
+    border-top: 3px solid #b3ca0d;
 }
 
 h2 {
