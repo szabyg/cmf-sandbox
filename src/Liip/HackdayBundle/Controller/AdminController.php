@@ -48,8 +48,8 @@ class AdminController extends Controller
         // If the form has been submitted and validates...
         if ($form->isValid()) {
             
-            var_dump($page);
-            // TODO save $page to Jackrabbit
+            $this->dm->persist($page, $page->name);
+            $this->dm->flush();
             
         }
 

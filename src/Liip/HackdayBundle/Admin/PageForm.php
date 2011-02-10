@@ -12,9 +12,8 @@ class PageForm extends Form
 {
     protected function configure()
     {
-        $this->add(new TextField('title', array(
-            'max_length' => 100,
-        )));
+        $this->add(new TextField('title', array('max_length' => 100)));
+        $this->add(new TextField('name', array('max_length' => 100)));
         $this->add(new TextareaField('content'));
     }
 }
