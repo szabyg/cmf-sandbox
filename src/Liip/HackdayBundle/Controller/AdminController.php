@@ -54,7 +54,7 @@ class AdminController extends Controller
             $session = $this->get('request')->getSession();
             $session->setFlash('notice', 'Page created!');
 
-            return $this->redirect($this->generateUrl('admin_create'));
+            return $this->redirect($this->generateUrl('admin'));
         }
 
         // Display the form
