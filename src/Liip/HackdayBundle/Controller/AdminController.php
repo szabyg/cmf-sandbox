@@ -47,10 +47,14 @@ class AdminController extends Controller
 
         // If the form has been submitted and validates...
         if ($form->isValid()) {
-            
+
             $this->dm->persist($page, $page->name);
             $this->dm->flush();
-            
+
+            $session = $this->get('request')->getSession();
+            $session->setFlash('notice', 'Page created!');
+
+            return $this->redirect($this->generateUrl('admin_create'));
         }
 
         // Display the form

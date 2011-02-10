@@ -1,5 +1,6 @@
 <html>
     <body>
+        {{ app.session.flash('notice') }}
         <form action="#" method="post">
             {{ form_field(form) }}
         

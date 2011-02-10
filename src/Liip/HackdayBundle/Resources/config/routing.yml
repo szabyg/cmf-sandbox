@@ -1,7 +1,7 @@
-index:
+admin:
     pattern: /admin/
     defaults: { _controller: admin.controller:indexAction }
 
-article:
+admin_create:
     pattern: /admin/create
     defaults: { _controller: admin.controller:createAction }
