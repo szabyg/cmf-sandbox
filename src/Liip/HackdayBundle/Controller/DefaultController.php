@@ -32,29 +32,24 @@ class DefaultController extends Controller
             return new \Symfony\Component\HttpFoundation\Response("Page not found '/$path'");
         }
 
-        $node = $this->jackalope->getSession()->getNode($path);
-        $data = array(
-            'path' => $path,
-            'doctrine_node' => $page,
-        );
-
-        return $this->render('HackdayBundle:Default:index.html.twig', array('data'=>$data));
+        return $this->render('HackdayBundle:Default:index.html.twig', array('path'=>$path));
     }
 
     /**
      * render the document identified by path
      */
-    public function contentAction($data)
+    public function contentAction($path)
     {
-        return $this->render('HackdayBundle:Default:document.html.twig', array('data'=>$data));
+        $node = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
+        return $this->render('HackdayBundle:Default:document.html.twig', array('path' => $path, 'node'=>$node));
     }
 
     /**
      * render a list of children of the node identified by path
      */
-    public function childlistAction($data)
+    public function childlistAction($path)
     {
-        $children = \Liip\HackdayBundle\Helper\PhpcrWalker::getChildList($this->dm, $this->jackalope->getSession(), $data['path']);
-        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$data['path'], 'children'=>$children));
+        $children = \Liip\HackdayBundle\Helper\PhpcrWalker::getChildList($this->dm, $this->jackalope->getSession(), $path);
+        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$path, 'children'=>$children));
     }
 }
