@@ -25,3 +25,10 @@ phpcr.config:
         pass:
         transport:
 
+services:
+    admin.controller:
+        class: Liip\HackdayBundle\Controller\AdminController
+        arguments:
+            - @service_container
+            - @jackalope.loader
+            - @doctrine.phpcr_odm.document_manager
