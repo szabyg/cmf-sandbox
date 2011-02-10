@@ -25,33 +25,44 @@ class DefaultController extends Controller
 
     public function indexAction($path)
     {
-        return $this->render('HackdayBundle:Default:index.html.twig', array('path'=>$path));
+        $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
+
+        if ($page === null) {
+            // TODO: this is not a nice way to display errors...
+            return new \Symfony\Component\HttpFoundation\Response("Page not found '/$path'");
+        }
+
+        $node = $this->jackalope->getSession()->getNode($path);
+        $data = array(
+            'path' => $path,
+            'doctrine_node' => $page,
+            'jackalope_node' => $node,
+        );
+
+        return $this->render('HackdayBundle:Default:index.html.twig', array('data'=>$data));
     }
 
     /**
      * render the document identified by path
      */
-    public function contentAction($path)
+    public function contentAction($data)
     {
-        $node = $this->jackalope->getSession()->getNode($path);
-        $props = $node->getPropertiesValues();
-        $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
+        $props = $data['jackalope_node']->getPropertiesValues();
         $props_for_twig = array(
             'primaryType' => $props['jcr:primaryType'],
             '_doctrine_alias' => $props['_doctrine_alias'],
         );
-        return $this->render('HackdayBundle:Default:document.html.twig', array('path'=>$path, 'page' => $page, 'props' => $props_for_twig));
+        return $this->render('HackdayBundle:Default:document.html.twig', array('data'=>$data, 'props' => $props_for_twig));
     }
 
     /**
      * render a list of children of the node identified by path
      */
-    public function childlistAction($path)
+    public function childlistAction($data)
     {
         //$article = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
-        $phpcrnode = $this->jackalope->getSession()->getNode($path);
         $children = array();
-        foreach($phpcrnode as $child) {
+        foreach($data['jackalope_node'] as $child) {
             $children[] = $child->getName();
         }
         return $this->render('HackdayBundle:Default:childlist.html.twig', array('children'=>$children));
