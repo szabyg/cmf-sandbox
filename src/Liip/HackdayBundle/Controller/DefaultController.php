@@ -33,9 +33,14 @@ class DefaultController extends Controller
      */
     public function contentAction($path)
     {
+        $node = $this->jackalope->getSession()->getNode($path);
+        $props = $node->getPropertiesValues();
         $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
-
-        return $this->render('HackdayBundle:Default:document.html.twig', array('path'=>$path, 'page' => $page));
+        $props_for_twig = array(
+            'primaryType' => $props['jcr:primaryType'],
+            '_doctrine_alias' => $props['_doctrine_alias'],
+        );
+        return $this->render('HackdayBundle:Default:document.html.twig', array('path'=>$path, 'page' => $page, 'props' => $props_for_twig));
     }
 
     /**
@@ -45,6 +50,7 @@ class DefaultController extends Controller
     {
         //$article = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
         $phpcrnode = $this->jackalope->getSession()->getNode($path);
+        $children = array();
         foreach($phpcrnode as $child) {
             $children[] = $child->getName();
         }
