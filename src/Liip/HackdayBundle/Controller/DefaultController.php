@@ -41,6 +41,11 @@ class DefaultController extends Controller
      */
     public function childlistAction($path)
     {
-        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$path));
+        //$article = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
+        $phpcrnode = $this->jackalope->getSession()->getNode($path);
+        foreach($phpcrnode as $child) {
+            $children[] = $child->getName();
+        }
+        return $this->render('HackdayBundle:Default:childlist.html.twig', array('children'=>$children));
     }
 }
