@@ -16,7 +16,7 @@ class AppKernel extends Kernel
 
             // register your bundles
             new Bundle\DoctrinePHPCRBundle\DoctrinePHPCRBundle(),
-
+            new Liip\HackdayBundle\HackdayBundle(),
         );
 
         if ($this->isDebug()) {
