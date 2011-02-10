@@ -1,0 +1,7 @@
+services:
+    liip_hackday.controller:
+        class: Liip\HackdayBundle\Controller\AdminController
+        arguments:
+            - @service_container
+            - @jackalope.loader
+            - @doctrine.phpcr_odm.document_manager
