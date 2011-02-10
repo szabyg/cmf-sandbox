@@ -8,7 +8,7 @@ namespace Liip\HackdayBundle\Document;
 class Page
 {
     /**
-     * @validator:NotBlank()
+     * @validation:NotBlank
      * @phpcr:String()
      */
     public $name;
