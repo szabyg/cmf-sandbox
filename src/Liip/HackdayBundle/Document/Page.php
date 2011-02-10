@@ -9,6 +9,7 @@ class Page
 {
     /**
      * @validation:NotBlank
+     * @validation:Regex("{^[a-z]+$}")
      * @phpcr:String()
      */
     public $name;
