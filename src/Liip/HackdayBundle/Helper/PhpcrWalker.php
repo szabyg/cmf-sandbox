@@ -15,7 +15,7 @@ class PhpcrWalker
         $children = array();
         foreach($phpcrnode as $child) {
             $name = $child->getName();
-            $children[$name] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find("$path/$name");
+            $children[$path . '/' . $name] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find("$path/$name");
         }
 
         return $children;

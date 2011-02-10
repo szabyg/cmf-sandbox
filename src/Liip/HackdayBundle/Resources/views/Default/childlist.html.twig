@@ -1,5 +1,5 @@
 <ul>
 {% for key, child in children %}
-    <li><a href="{{ path('cms', { 'path': '' }) ~ child.name }}">{{ child.title }}</a></li>
+    <li><a href="{{ path('cms', { 'path': '' }) ~ key }}">{{ child.title }}</a></li>
 {% endfor %}
 </ul>
