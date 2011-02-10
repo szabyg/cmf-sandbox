@@ -27,9 +27,7 @@ class DefaultController extends Controller
 
     public function indexAction($path)
     {
-        $page = $this->dm->getRepository('Liip\HackdayBundle\Document\Page')->find('/'.$path);
-
-        if ($page === null) {
+        if ($this->jackalope->getSession()->itemExists('/' . $path) === false) {
             throw new NotFoundHttpException("Page not found '/$path'");
         }
 
