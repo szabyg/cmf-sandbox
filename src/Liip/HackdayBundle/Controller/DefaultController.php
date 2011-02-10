@@ -55,6 +55,6 @@ class DefaultController extends Controller
     public function childlistAction($data)
     {
         $children = \Liip\HackdayBundle\Helper\PhpcrWalker::getChildList($this->dm, $this->jackalope->getSession(), $data['path']);
-        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$path, 'children'=>$children));
+        return $this->render('HackdayBundle:Default:childlist.html.twig', array('path'=>$data['path'], 'children'=>$children));
     }
 }
