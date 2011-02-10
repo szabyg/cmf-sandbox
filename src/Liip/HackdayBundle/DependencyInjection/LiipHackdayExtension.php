@@ -4,6 +4,7 @@ namespace Liip\HackdayBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class LiipHackdayExtension extends Extension
@@ -49,7 +50,7 @@ class LiipHackdayExtension extends Extension
      */
     public function getFileLoader(ContainerBuilder $container)
     {
-        return new YamlFileLoader($container, __DIR__.'/../Resources/config');
+        return new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
     }
 
     /**

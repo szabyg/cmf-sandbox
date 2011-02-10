@@ -20,6 +20,7 @@ services:
     
     liip_hackday.form:
         factory_method: create
+        factory_class: %liip_hackday.form.page.class%
         class: %liip_hackday.form.page.class%
         arguments:
             - @form.context
