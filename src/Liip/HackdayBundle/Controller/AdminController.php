@@ -6,6 +6,10 @@ use Liip\HackdayBundle\Document\Page;
 use Liip\HackdayBundle\Admin\PageForm;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\DataError;
+use Symfony\Component\Form\PropertyPath;
+
+use Jackalope\Transport\Davex\HTTPErrorException;
 
 class AdminController extends Controller
 {
@@ -48,13 +52,21 @@ class AdminController extends Controller
         // If the form has been submitted and validates...
         if ($form->isValid()) {
 
-            $this->dm->persist($page, $page->name);
-            $this->dm->flush();
+            try {
+                $this->dm->persist($page, $page->name);
+                $this->dm->flush();
 
-            $session = $this->get('request')->getSession();
-            $session->setFlash('notice', 'Page created!');
+                $session = $this->get('request')->getSession();
+                $session->setFlash('notice', 'Page created!');
 
-            return $this->redirect($this->generateUrl('admin'));
+                return $this->redirect($this->generateUrl('admin'));
+
+            } catch (HTTPErrorException $e) {
+                
+                $path = new PropertyPath('name');
+                $form->addError(new DataError('Name already in use.'), $path->getIterator());
+
+            }
         }
 
         // Display the form
