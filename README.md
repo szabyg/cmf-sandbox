@@ -13,6 +13,7 @@
     git clone git://github.com/symfony-cmf/cmf-sandbox.git
     cd cmf-sandbox
     git submodule update --init --recursive
+    app/console assets:install web/ --symlink
 
 This will fetch the main project and all it's dependencies ( Zend, Symfony, Doctrine\PHPCR, Jackalope ... )
 
