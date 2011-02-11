@@ -8,7 +8,7 @@
   * PHP 5.3.2+
   * phpUnit 3.5+ (optional)
 
-## Get the code
+### Get the code
 
     git clone git://github.com/symfony-cmf/cmf-sandbox.git
     cd cmf-sandbox
@@ -22,27 +22,31 @@ You have to copy the default config.yml to fit your needs:
 
     cp app/config/config.yml.dist app/config/config.yml
 
-### Install and run Apache JackRabbit
+### Install and run Apache Jackrabbit
 
 In order to run tests or application, you will need a working Jackrabbit server running and listening by default on localhost port 8080.
 
-### Download the jackrabbit server from the official website: [http://jackrabbit.apache.org/downloads.html](http://jackrabbit.apache.org/downloads.html)
-    
-    mv jackrabbit-standalone-2.x.x.jar jackrabbit-standalone.jar
+#### Download the Jackrabbit server
+
+Official download website: [http://jackrabbit.apache.org/downloads.html](http://jackrabbit.apache.org/downloads.html)
+
+#### Run the Jar inside the project directory
+
+    mv jackrabbit-standalone-*.jar jackrabbit-standalone.jar
     java -jar jackrabbit-standalone.jar
 
-## Try it
+#### Try it
 
 Open you browser on [http://localhost:8080/](http://localhost:8080/)
 You should have a default jackrabbit homepage.
 
-## Run the test suite
+### Run the test suite
 
 Tests are written with PHPUnit.
 
     phpunit -c app
 
-## Access by web browser
+### Access by web browser
 
 Create an apache virtual host entry along the lines of
 
