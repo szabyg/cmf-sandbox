@@ -19,20 +19,21 @@ This will fetch the main project and all it's dependencies ( Zend, Symfony, Doct
 ### Create your personal config file
 
 You have to copy the default config.yml to fit your needs:
+
     cp app/config/config.yml.dist app/config/config.yml
 
 ### Install and run Apache JackRabbit
 
 In order to run tests or application, you will need a working Jackrabbit server running and listening by default on localhost port 8080.
 
-### Download the jackrabbit server from the official website: http://jackrabbit.apache.org/downloads.html
-
+### Download the jackrabbit server from the official website: [http://jackrabbit.apache.org/downloads.html](http://jackrabbit.apache.org/downloads.html)
+    
     mv jackrabbit-standalone-2.x.x.jar jackrabbit-standalone.jar
     java -jar jackrabbit-standalone.jar
 
 ## Try it
 
-Open you browser on http://localhost:8080/
+Open you browser on [http://localhost:8080/](http://localhost:8080/)
 You should have a default jackrabbit homepage.
 
 ## Run the test suite
@@ -44,14 +45,15 @@ Tests are written with PHPUnit.
 ## Access by web browser
 
 Create an apache virtual host entry along the lines of
-<Virtualhost *:80>
-    Servername cmf.lo
-    DocumentRoot /path/to/symfony-cmf/cmf-sandbox/web
-    <Directory /path/to/symfony-cmf/cmf-sandox>
-        AllowOverride All
-    </Directory>
-</Virtualhost>
+
+    <Virtualhost *:80>
+        Servername cmf.lo
+        DocumentRoot /path/to/symfony-cmf/cmf-sandbox/web
+        <Directory /path/to/symfony-cmf/cmf-sandox>
+            AllowOverride All
+        </Directory>
+    </Virtualhost>
 
 And add an entry to your hosts file for cmf.lo
 
-Now go to http://cmf.lo/app_dev.php
+Now go to [http://cmf.lo/app_dev.php](http://cmf.lo/app_dev.php)
