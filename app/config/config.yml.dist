@@ -20,7 +20,7 @@ twig.config:
 phpcr.config:
     backend:
         url: http://localhost:8080/server/
-        workspace: foo
+        workspace: cmf
         user:
         pass:
         transport:
