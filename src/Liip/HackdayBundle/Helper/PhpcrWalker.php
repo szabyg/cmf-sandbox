@@ -41,7 +41,8 @@ class PhpcrWalker
         $i = 0; //start at first element
         while(($node = $phpcrnode->getAncestor($i++)) != $phpcrnode) {
             $name = $node->getName();
-            $parents[$node->getPath()] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find($node->getPath());
+            $childPath = substr($node->getPath(), 1);
+            $parents[$childPath] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find($node->getPath());
         }
 
         return $parents;
