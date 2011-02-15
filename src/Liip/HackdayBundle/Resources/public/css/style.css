@@ -46,7 +46,7 @@ ul.breadcrumb li {
     padding-left: 0px;
 }
 ul.breadcrumb li:after {
-    content: ' |';
+    content: ' /';
 }
 ul.breadcrumb li:last-child:after {
     content: '';

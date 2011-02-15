@@ -38,10 +38,10 @@ class PhpcrWalker
         }
 
         $parents = array();
-        $i = 0; //start at first element
+        $i = 1; //start at first element
         while(($node = $phpcrnode->getAncestor($i++)) != $phpcrnode) {
             $name = $node->getName();
-            $childPath = substr($node->getPath(), 1);
+            $childPath = substr($node->getPath(), 1); // remove first '/'
             $parents[$childPath] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find($node->getPath());
         }
 

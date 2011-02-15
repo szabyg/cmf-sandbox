@@ -1,5 +1,10 @@
 <ul class="breadcrumb">
+{% if path == '' %}
+    <li>Home</li>
+{% else %}
+    <li><a href="{{ path('cms', { 'path': '' }) }}">Home</a></li>
+{% endif %}
 {% for key, p in parents %}
-    <li><a href="{{ path('cms', { 'path': '' }) ~ key }}">{{ p.title|default('Home') }}</a></li>
+    <li><a href="{{ path('cms', { 'path': '' }) ~ key }}">{{ p.title }}</a></li>
 {% endfor %}
 </ul>
