@@ -1,0 +1,5 @@
+<ul class="breadcrumb">
+{% for key, p in parents %}
+    <li><a href="{{ path('cms', { 'path': '' }) ~ key }}">{{ p.title|default('Home') }}</a></li>
+{% endfor %}
+</ul>

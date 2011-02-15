@@ -11,6 +11,7 @@ class PhpcrWalker
      * key are names and values the doctrine models for those nodes
      */
     public static function getChildList($dm, SessionInterface $session, $path) {
+
         $phpcrnode = $session->getNode($path);
         $children = array();
         foreach($phpcrnode as $child) {
@@ -23,5 +24,26 @@ class PhpcrWalker
         }
 
         return $children;
+    }
+
+    /**
+     * return an array of all parent nodes, starting with root to the node at path, without that node itself
+     * key are names and values the doctrine models for those nodes
+     */
+    public static function getParents($dm, SessionInterface $session, $path, $page = null) {
+        $phpcrnode = $session->getNode($path);
+
+        if ($phpcrnode->getDepth() < 1) {
+            return array();
+        }
+
+        $parents = array();
+        $i = 0; //start at first element
+        while(($node = $phpcrnode->getAncestor($i++)) != $phpcrnode) {
+            $name = $node->getName();
+            $parents[$node->getPath()] = $dm->getRepository('Liip\HackdayBundle\Document\Page')->find($node->getPath());
+        }
+
+        return $parents;
     }
 }

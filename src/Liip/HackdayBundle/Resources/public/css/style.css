@@ -34,3 +34,20 @@ hr {
 .container {
     padding: 1em 3em;
 }
+
+ul.breadcrumb {
+    margin-left: 0px;
+    padding-left: 0px;
+
+}
+ul.breadcrumb li {
+    display: inline;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+ul.breadcrumb li:after {
+    content: ' |';
+}
+ul.breadcrumb li:last-child:after {
+    content: '';
+}

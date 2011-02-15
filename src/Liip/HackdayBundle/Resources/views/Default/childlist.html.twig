@@ -1,4 +1,4 @@
-<ul>
+<ul class="childlist">
 {% for key, child in children %}
     <li><a href="{{ path('cms', { 'path': '' }) ~ key }}">{{ child.title }}</a></li>
 {% endfor %}

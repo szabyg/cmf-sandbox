@@ -1,6 +1,7 @@
 {% extends "HackdayBundle:Default:layout.html.twig" %}
 
 {% block content %}
+{% render "liip_hackday.default:breadcrumbAction" with { 'path': path } %}
 {% render "liip_hackday.default:contentAction" with { 'path': path } %}
 {% render "liip_hackday.default:childlistAction" with { 'path': path } %}
 {% endblock %}
